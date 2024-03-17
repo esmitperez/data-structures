@@ -17,13 +17,19 @@ class LinkedList:
     """LinkedList"""
 
     def __init__(self):
-        self.head = None
-        self.tail = None
-        self.size = 0
+        self.__head__ = None
+        self.__tail__ = None
+        self.__size__ = 0
 
     def is_empty(self):
         """True if the list is empty"""
-        return self.head is None
+        return self.__head__ is None
+
+    def delete_list(self):
+        """Delete the list"""
+        self.__head__ = None
+        self.__tail__ = None
+        self.__size__ = 0
 
     def length(self) -> int:
         """the size of the linked list
@@ -31,7 +37,7 @@ class LinkedList:
         Returns:
             _type_: _description_
         """
-        return self.size
+        return self.__size__
 
     def append(self, data):
         """insert an element at the end of the list
@@ -41,14 +47,14 @@ class LinkedList:
         """
         new_node = Node(data)
 
-        if self.head is None:
-            self.head = new_node
+        if self.__head__ is None:
+            self.__head__ = new_node
 
-        if self.tail is not None:
-            self.tail.next = new_node
+        if self.__tail__ is not None:
+            self.__tail__.next = new_node
 
-        self.tail = new_node
-        self.size += 1
+        self.__tail__ = new_node
+        self.__size__ += 1
 
     def prepend(self, data):
         """insert an element at the beginning of the list
@@ -58,13 +64,13 @@ class LinkedList:
         """
         new_node = Node(data)
 
-        if self.head is None:
-            self.head = new_node
+        if self.__head__ is None:
+            self.__head__ = new_node
         else:
-            new_node.next = self.head
-            self.head = new_node
+            new_node.next = self.__head__
+            self.__head__ = new_node
 
-        self.size += 1
+        self.__size__ += 1
 
     def remove(self, value):
         """remove
@@ -72,7 +78,7 @@ class LinkedList:
         Args:
             value (_type_): _description_
         """
-        curr = self.head
+        curr = self.__head__
         if self.is_empty():
             return
 
@@ -83,16 +89,16 @@ class LinkedList:
             found = curr.data == value
             if found:
                 # special cases
-                if self.head == curr:
-                    self.head = curr.next
-                if self.tail == curr:
-                    self.tail = prev
+                if self.__head__ == curr:
+                    self.__head__ = curr.next
+                if self.__tail__ == curr:
+                    self.__tail__ = prev
                 if prev is not None:
                     prev.next = curr.next
             else:
                 prev = curr
                 curr = curr.next
-        self.size -= 1
+        self.__size__ -= 1
 
     def __move_to_index__(self, at_index: int) -> Tuple[Node, Node]:
         """_summary_
@@ -111,7 +117,7 @@ class LinkedList:
             raise IndexError
 
         curr_idx = 0
-        curr = self.head
+        curr = self.__head__
         prev = None
 
         # move curr to desired index
@@ -149,7 +155,7 @@ class LinkedList:
         if prev is not None:
             prev.next = new_node
 
-        self.size += 1
+        self.__size__ += 1
 
     def delete(self, at_index: int):
         """delete at index
@@ -159,15 +165,15 @@ class LinkedList:
             data (_type_): _description_
         """
         if at_index == 0:
-            self.head = self.head.next
-            self.size -= 1
+            self.__head__ = self.__head__.next
+            self.__size__ -= 1
             return
 
         (prev, curr) = self.__move_to_index__(at_index)
         if curr is not None and prev is not None:
             prev.next = curr.next
 
-        self.size -= 1
+        self.__size__ -= 1
 
     def reverse(self):
         """reverse
@@ -178,8 +184,8 @@ class LinkedList:
         if self.is_empty() or self.length() == 1:
             return
 
-        head = self.head
-        tail = self.tail
+        head = self.__head__
+        tail = self.__tail__
 
         # we now now we have at least 2 nodes to swap
         prev = None
@@ -197,8 +203,8 @@ class LinkedList:
 
         curr.next = prev
 
-        self.head = tail
-        self.tail = head
+        self.__head__ = tail
+        self.__tail__ = head
 
     def extend(self, at_index: int, data):
         raise NotImplementedError
@@ -208,7 +214,7 @@ class LinkedList:
 
     def __repr__(self):
         tokens = []
-        curr = self.head
+        curr = self.__head__
 
         while curr is not None:
             arrow = "" if curr.next is None else " -> "

@@ -103,6 +103,19 @@ class TestLinkedList(unittest.TestCase):
         with self.assertRaises(IndexError):
             llist.insert(-1, "F")
 
+    def test_delete_list(self):
+        """delete list"""
+        llist = LinkedList()
+        llist.append("A")
+        llist.append("B")
+        llist.append("C")
+        llist.append("D")
+        self.assertEqual(repr(llist), "A -> B -> C -> D")
+
+        llist.delete_list()
+        self.assertEqual(repr(llist), "")
+        self.assertTrue(llist.is_empty())
+
     def test_delete(self):
         """delete"""
         llist = LinkedList()
