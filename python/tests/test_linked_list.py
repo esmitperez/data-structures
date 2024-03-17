@@ -291,5 +291,25 @@ class TestLinkedList(unittest.TestCase):
         llist = LinkedList()
         self.assertFalse(llist.contains("Z"))
 
+    def test_count(self):
+        """count
+        """
+        llist = LinkedList()
+        llist.append("A")
+        llist.append("B")
+        llist.append("C")
+        llist.append("D")
+        llist.append("F")
+        llist.append("F")
+        llist.append("F")
+        llist.append("K")
+
+        self.assertEqual(llist.count("Z"), 0)
+        self.assertEqual(llist.count("A"), 1)
+        self.assertEqual(llist.count("F"), 3)
+
+        llist = LinkedList()
+        self.assertEqual(llist.count("Z"), 0)
+
 if __name__ == "__main__":
     unittest.main()

@@ -219,7 +219,25 @@ class LinkedList:
         raise NotImplementedError
 
     def count(self, value) -> int:
-        raise NotImplementedError
+        """count instances of a given value
+
+        Args:
+            value (_type_): _description_
+
+        Returns:
+            int: _description_
+        """
+        acc = 0
+
+        if not self.is_empty():
+            curr = self.__head__
+
+            while curr is not None:
+                if curr.data == value:
+                    acc += 1
+                curr = curr.next
+
+        return acc
 
     def contains(self, value) -> bool:
         """determines if an element is contained in a list
@@ -232,6 +250,7 @@ class LinkedList:
         """
         if self.is_empty():
             return False
+
         curr = self.__head__
         while curr is not None:
             if curr.data == value:
