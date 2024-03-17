@@ -1,10 +1,11 @@
 [tool.poetry]
-name = "python"
+name = "linked-list"
 version = "0.1.0"
 description = ""
 authors = ["Esmit Pérez <esmitperez@gmail.com>"]
 license = "MIT"
 readme = "README.md"
+packages = [{include = "lists", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.12"
