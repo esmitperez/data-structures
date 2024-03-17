@@ -250,6 +250,31 @@ class TestLinkedList(unittest.TestCase):
         llist.reverse()
         self.assertEqual(repr(llist), "DD -> CC -> XX -> BB -> AA")
 
+    def test_find(self):
+        """_summary_
+        """
+
+        llist = LinkedList()
+        llist.append("A")
+        llist.append("B")
+        llist.append("C")
+        llist.append("D")
+
+        with self.assertRaises(IndexError):
+            llist.find(-1)
+
+        with self.assertRaises(IndexError):
+            llist.find(100)
+
+        self.assertEqual(llist.find(0), 'A')
+        self.assertEqual(llist.find(2), 'C')
+
+        llist.insert(2,"E")
+        self.assertEqual(llist.find(2), 'E')
+        self.assertEqual(llist.find(3), 'C')
+
+        self.assertEqual(llist.find(3, from_end=True), 'B')
+        self.assertEqual(llist.find(0, from_end=True), 'D')
 
 if __name__ == "__main__":
     unittest.main()

@@ -224,5 +224,14 @@ class LinkedList:
     def exists(self, value) -> bool:
         raise NotImplementedError
     
-    def find(self, at_index: int, from_end=False) -> bool:
-        self.__move_to_index__(at_index)
+    def find(self, at_index: int, from_end=False) -> str:
+        try:
+            if from_end:
+                target_idx = (self.__size__ - at_index) - 1
+            else:
+                target_idx = at_index
+            (_, curr) = self.__move_to_index__(target_idx)
+            return curr.data
+        except IndexError as exc:
+            raise exc
+
