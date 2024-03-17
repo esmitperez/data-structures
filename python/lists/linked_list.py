@@ -21,6 +21,46 @@ class LinkedList:
         self.__tail__ = None
         self.__size__ = 0
 
+    def __move_to_index__(self, at_index: int) -> Tuple[Node, Node]:
+        """_summary_
+
+        Args:
+            at_index (int): _description_
+
+        Raises:
+            IndexError: _description_
+            IndexError: _description_
+
+        Returns:
+            Tuple[Node, Node]: prev, curr nodes
+        """
+        if at_index < 0 or at_index > self.__size__:
+            raise IndexError(f'Idx {at_index} does not exiust')
+
+        curr_idx = 0
+        curr = self.__head__
+        prev = None
+
+        # move curr to desired index
+        while curr is not None and curr_idx < at_index:
+            prev = curr
+            curr = curr.next
+            curr_idx += 1
+
+        return (prev, curr)
+
+    def __repr__(self):
+        tokens = []
+        curr = self.__head__
+
+        while curr is not None:
+            arrow = "" if curr.next is None else " -> "
+            tokens.append(curr.data)
+            tokens.append(arrow)
+            curr = curr.next
+
+        return "".join(tokens)
+
     def is_empty(self):
         """True if the list is empty"""
         return self.__head__ is None
@@ -100,39 +140,8 @@ class LinkedList:
                 curr = curr.next
         self.__size__ -= 1
 
-    def __move_to_index__(self, at_index: int) -> Tuple[Node, Node]:
-        """_summary_
-
-        Args:
-            at_index (int): _description_
-
-        Raises:
-            IndexError: _description_
-            IndexError: _description_
-
-        Returns:
-            Tuple[Node, Node]: prev, curr nodes
-        """
-        if at_index < 0:
-            raise IndexError
-
-        curr_idx = 0
-        curr = self.__head__
-        prev = None
-
-        # move curr to desired index
-        while curr is not None and curr_idx < at_index:
-            prev = curr
-            curr = curr.next
-            curr_idx += 1
-
-        if curr_idx < at_index:
-            raise IndexError
-
-        return (prev, curr)
-
     def insert(self, at_index: int, data):
-        """insert
+        """insert at a given 0-based index
 
         Args:
             at_index (int): _description_
@@ -212,14 +221,8 @@ class LinkedList:
     def count(self, value) -> int:
         raise NotImplementedError
 
-    def __repr__(self):
-        tokens = []
-        curr = self.__head__
-
-        while curr is not None:
-            arrow = "" if curr.next is None else " -> "
-            tokens.append(curr.data)
-            tokens.append(arrow)
-            curr = curr.next
-
-        return "".join(tokens)
+    def exists(self, value) -> bool:
+        raise NotImplementedError
+    
+    def find(self, at_index: int, from_end=False) -> bool:
+        self.__move_to_index__(at_index)

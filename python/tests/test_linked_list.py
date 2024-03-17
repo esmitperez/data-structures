@@ -85,12 +85,15 @@ class TestLinkedList(unittest.TestCase):
 
         llist.insert(1, "D")
         self.assertEqual(repr(llist), "B -> D -> C -> A")
+        self.assertEqual(llist.length(), 4)
 
         llist.insert(3, "E")
         self.assertEqual(repr(llist), "B -> D -> C -> E -> A")
+        self.assertEqual(llist.length(), 5)
 
         llist.insert(5, "F")
         self.assertEqual(repr(llist), "B -> D -> C -> E -> A -> F")
+        self.assertEqual(llist.length(), 6)
 
         with self.assertRaises(IndexError):
             llist.insert(10, "F")
