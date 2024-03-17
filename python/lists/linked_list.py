@@ -215,9 +215,6 @@ class LinkedList:
         self.__head__ = tail
         self.__tail__ = head
 
-    def extend(self, at_index: int, data):
-        raise NotImplementedError
-
     def count(self, value) -> int:
         """count instances of a given value
 
