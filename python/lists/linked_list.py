@@ -221,9 +221,24 @@ class LinkedList:
     def count(self, value) -> int:
         raise NotImplementedError
 
-    def exists(self, value) -> bool:
-        raise NotImplementedError
-    
+    def contains(self, value) -> bool:
+        """determines if an element is contained in a list
+
+        Args:
+            value (_type_): _description_
+
+        Returns:
+            bool: _description_
+        """
+        if self.is_empty():
+            return False
+        curr = self.__head__
+        while curr is not None:
+            if curr.data == value:
+                return True
+            curr = curr.next
+        return False
+
     def find(self, at_index: int, from_end=False) -> str:
         try:
             if from_end:

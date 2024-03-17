@@ -276,5 +276,20 @@ class TestLinkedList(unittest.TestCase):
         self.assertEqual(llist.find(3, from_end=True), 'B')
         self.assertEqual(llist.find(0, from_end=True), 'D')
 
+    def test_contains(self):
+        """contains
+        """
+        llist = LinkedList()
+        llist.append("A")
+        llist.append("B")
+        llist.append("C")
+        llist.append("D")
+
+        self.assertTrue(llist.contains("A"))
+        self.assertFalse(llist.contains("Z"))
+
+        llist = LinkedList()
+        self.assertFalse(llist.contains("Z"))
+
 if __name__ == "__main__":
     unittest.main()
